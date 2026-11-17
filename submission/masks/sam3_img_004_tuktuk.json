@@ -1,0 +1,135 @@
+{
+  "model": "SAM 3",
+  "backend": "Ultralytics local interactor",
+  "device": "mps",
+  "image": "img_004.jpg",
+  "image_size": [
+    1024,
+    682
+  ],
+  "positive_points": [
+    [
+      654.34,
+      505.01
+    ],
+    [
+      654.34,
+      321.32
+    ]
+  ],
+  "negative_points": [
+    [
+      478.91,
+      362.16
+    ]
+  ],
+  "box_xyxy": [
+    474.07,
+    229.47,
+    834.61,
+    596.86
+  ],
+  "click_count": 3,
+  "seconds": 3.236,
+  "mask_pixels": 92309,
+  "polygons": [
+    [
+      481.0,
+      254.0,
+      478.0,
+      274.0,
+      486.0,
+      281.0,
+      563.0,
+      295.0,
+      616.0,
+      295.0,
+      620.0,
+      312.0,
+      633.0,
+      313.0,
+      614.0,
+      326.0,
+      581.0,
+      326.0,
+      574.0,
+      319.0,
+      568.0,
+      327.0,
+      488.0,
+      337.0,
+      494.0,
+      382.0,
+      484.0,
+      385.0,
+      488.0,
+      435.0,
+      481.0,
+      507.0,
+      490.0,
+      509.0,
+      499.0,
+      531.0,
+      528.0,
+      532.0,
+      541.0,
+      507.0,
+      565.0,
+      515.0,
+      585.0,
+      505.0,
+      643.0,
+      524.0,
+      649.0,
+      551.0,
+      733.0,
+      550.0,
+      748.0,
+      590.0,
+      771.0,
+      593.0,
+      773.0,
+      549.0,
+      808.0,
+      539.0,
+      817.0,
+      421.0,
+      835.0,
+      406.0,
+      832.0,
+      391.0,
+      817.0,
+      381.0,
+      794.0,
+      294.0,
+      804.0,
+      276.0,
+      737.0,
+      230.0,
+      712.0,
+      230.0,
+      693.0,
+      240.0,
+      552.0,
+      236.0,
+      499.0,
+      243.0
+    ]
+  ],
+  "positive_clicks_inside": [
+    true,
+    true
+  ],
+  "negative_clicks_outside": [
+    true
+  ],
+  "created_at_utc": "2026-11-17T17:11:40.656685+00:00",
+  "note": "Prompts chosen mechanically from reviewed box geometry; student visual review pending, not claimed as student mouse clicks.",
+  "status": "student visually reviewed the prompted object",
+  "overlay": "sam3_img_004_tuktuk.jpg",
+  "student_review": {
+    "source": "student feedback in conversation",
+    "raw_feedback": "004 ôm sát, không lấy thêm người hay bỏ mất phần xe.",
+    "target_scope": "one prompted vehicle per output"
+  }
+}

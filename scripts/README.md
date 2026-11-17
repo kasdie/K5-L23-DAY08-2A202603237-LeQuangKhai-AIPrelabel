@@ -67,3 +67,15 @@ Bẫy: `missing` đúng khi box gốc có lại (cùng lớp, IoU ≥ 0.5); `ext
 
 Kiểm được: tên file, lớp có trong taxonomy, box trong ảnh, box quá nhỏ, đủ / thừa ảnh, polygon, độ lệch giữa hai bộ nhãn, các số đo QC.
 **Không** kiểm được: box có ôm sát vật thật không, lớp có đúng thực tế không, vật mà cả bạn lẫn máy cùng bỏ sót (ngoài gold), việc bạn có theo checklist thật không.
+
+## Tiện ích Part 1 trên máy học viên
+
+`gold_session.py timer` mở task gold đã chuẩn bị, đo thời gian với `p`/`r` để tạm dừng/tiếp tục; `done` cộng thời gian phiên vào `time_log.csv`, `q` bỏ phiên. `gold_session.py import-gold <ZIP/JSON>` kiểm đúng tập gold và gọi `validate_labels.py` trước khi ghi `submission/labels/gold_manual.json`; bản cũ được sao lưu trong `work/gold-session/`. Hai file `Bat-dau-Gold.command` / `Nhap-Gold.command` chạy các lệnh này bằng `.venv` của bài. Xem [NEXT_STEPS.md](../NEXT_STEPS.md). Các tiện ích không chạy AI hoặc tạo nhãn thay học viên.
+
+## SAM3 local cho Part 2
+
+`prelabel_sam3_local.py` tái sử dụng CLI và pipeline của `prelabel.py`, thay bộ tách mask hình học bằng dịch vụ SAM3 Ultralytics có sẵn tại `127.0.0.1:8071`. Ví dụ: `python scripts/prelabel_sam3_local.py --model yolo26 --size m --images img_004.jpg img_013.jpg --classes person,motorbike,car --conf 0.3 --segmenter sam --sam sam3.pt --device mps --out work/prelabel/t_sam3`. Cần dịch vụ SAM3 đang chạy. Đầu ra COCO, viz và log theo định dạng gốc; thêm `sam3-service-calls.json` ghi bằng chứng các lần gọi. Đây là đường click/box của Ultralytics, khác `prelabel.py --model sam3` dùng Hugging Face/Transformers.
+
+## SAM3 click/box local cho Part 5
+
+`sam3_points_local.py --image img_013.jpg --pos "400,480" --pos "600,110" --neg "720,300" --out submission/masks --name sam3_img013_tuktuk` gọi interactor local cổng 8071, lưu ảnh overlay và JSON ghi tọa độ/số điểm/timing/mask thật. `--box` có thể bổ sung box gợi ý. Mỗi prompt chọn một vật; không phải chế độ concept prompting tách mọi instance. Những prompt chạy theo script phải được ghi rõ nguồn, không tính thành thao tác chuột do học viên thực hiện.
