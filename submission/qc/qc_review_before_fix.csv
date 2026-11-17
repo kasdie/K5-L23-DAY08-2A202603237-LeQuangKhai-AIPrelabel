@@ -1,0 +1,6 @@
+image,object_id,error_type,reviewer,note
+img_003.jpg,13,sai_vi_tri_kich_thuoc,Lê Quang Khải,"Theo học viên: box three_wheeler chưa ôm sát vật; ID release #13, CVAT ServerID 3694; chưa xác nhận đã sửa."
+img_006.jpg,,khong,Lê Quang Khải,Học viên đã kiểm và báo không thấy lỗi.
+img_014.jpg,,khong,Lê Quang Khải,Học viên đã kiểm và báo không thấy lỗi.
+img_031.jpg,,khong,Lê Quang Khải,Học viên đã kiểm và báo không thấy lỗi.
+img_035.jpg,,khong,Lê Quang Khải,Học viên đã kiểm và báo không thấy lỗi.

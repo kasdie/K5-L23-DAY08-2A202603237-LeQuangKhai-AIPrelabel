@@ -1,0 +1,6 @@
+image,object_id,error_type,reviewer,note
+img_003.jpg,,khong,Lê Quang Khải,"Sau sửa QC, học viên xem lại ảnh trước/sau và xác nhận: Đã ôm sát, không thấy lỗi còn lại ở ảnh 003. Box xe hiện #1, CVAT ServerID 3694; kết quả lỗi trước sửa giữ ở qc_review_before_fix.csv."
+img_006.jpg,,khong,Lê Quang Khải,Học viên đã kiểm và báo không thấy lỗi; ảnh và nhãn không thay đổi sau sửa QC ảnh 003.
+img_014.jpg,,khong,Lê Quang Khải,Học viên đã kiểm và báo không thấy lỗi; ảnh và nhãn không thay đổi sau sửa QC ảnh 003.
+img_031.jpg,,khong,Lê Quang Khải,Học viên đã kiểm và báo không thấy lỗi; ảnh và nhãn không thay đổi sau sửa QC ảnh 003.
+img_035.jpg,,khong,Lê Quang Khải,Học viên đã kiểm và báo không thấy lỗi; ảnh và nhãn không thay đổi sau sửa QC ảnh 003.
