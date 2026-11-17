@@ -5,7 +5,7 @@
 - Lớp (L2 / L3 / khác): L2
 - Tài khoản GitHub: kasdie
 - Repo bài nộp (URL): https://github.com/kasdie/K5-L23-DAY08-2A202603237-LeQuangKhai-AIPrelabel
-- Commit nội dung chốt bài (hash): `8c379653cf4f95eaa391a13614e20edd75dcdd9d` (commit kế tiếp chỉ ghi mã này vào STUDENT.md; khi đối chiếu bài nộp, xem cả commit metadata cuối).
+- Commit nội dung chốt bài (hash): `7d3f937e8a46663c0ad88da9d8d0c56600ad14c2` (commit kế tiếp chỉ ghi mã này vào STUDENT.md; khi đối chiếu bài nộp, xem cả commit metadata cuối).
 - Máy: macOS, Apple M5 (MPS), RAM 16 GB
 - CVAT (Docker): v2.74.1, http://localhost:8080
 
