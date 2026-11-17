@@ -5,7 +5,7 @@ Học viên đã chọn **Release** ngày **18/11/2026** cho lô bài lab hiện
 ## Nội dung đã hoàn thành
 
 - Gold tự gán: 4 ảnh, 45 đối tượng; học viên xác nhận chưa xem nhãn AI trước khi gán tay. Bản gold giữ nguyên qua các vòng xử lý.
-- Tour YOLO26, YOLOE và SAM3 chạy thực trên máy. Log có nguồn từ các lượt chạy thật, không dùng cache thay cho chạy model.
+- Tour YOLO26, YOLOE và SAM3 chạy thực trên máy. Log có nguồn từ các lượt chạy thật, không dùng cache thay cho chạy model. Các quyết định r05–r08 và nhận xét r06 đã được học viên đọc, đồng ý và điền đủ; kế hoạch kiểm hai lượt được ghi là cải tiến cho lần sau.
 - Chọn ngưỡng bằng script trên gold; bảng ngưỡng ghi rõ lớp thiếu mẫu hoặc chưa đạt recall mục tiêu. Phép đo dùng cùng gold để chọn và chấm ngưỡng, không phải kiểm tra độc lập.
 - Batch review: 24 ảnh, 539 đối tượng. Giữ riêng các vòng bắt bẫy 5/12 → 8/12 → 11/12. Hai vòng sau đã có gợi ý; không thay kết quả mù đầu bằng kết quả sau sửa.
 - 3 mask SAM3 ở ảnh 004, 013, 017 đã được học viên xem và nhận xét. Tọa độ prompt do script chuẩn bị; không ghi là học viên tự click trong CVAT. Mỗi phép thử chọn một xe.
