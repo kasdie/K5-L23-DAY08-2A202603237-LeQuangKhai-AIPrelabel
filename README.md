@@ -2,13 +2,18 @@
   <img src="docs/assets/hero.png" alt="Day 08 Lab: AI hỗ trợ gán nhãn" width="100%">
 </p>
 
-# Day 08 Lab — AI hỗ trợ gán nhãn: Pre-label, Review, Calibration
+# Day 08 Lab — 2A202603237 - Lê Quang Khải
+
+Repo bài nộp: [kasdie/K5-L23-DAY08-2A202603237-LeQuangKhai-AIPrelabel](https://github.com/kasdie/K5-L23-DAY08-2A202603237-LeQuangKhai-AIPrelabel).
+
+**Kết quả bài lab:** học viên đã chọn **Release** ngày 18/11/2026. Bộ nhãn cuối có 24 ảnh / 539 đối tượng; QC sau sửa và tái kiểm ghi 0/5 ảnh lỗi, 0/101 đối tượng lỗi. Kết quả mù đầu 5/12 bẫy và kết quả sau gợi ý 11/12 được giữ riêng. QC dùng lại mẫu đã biết lỗi; chưa chứng minh toàn lô đạt lỗi ≤ 2%. Xem [báo cáo](submission/REPORT.md) và [trạng thái bài nộp](NEXT_STEPS.md).
 
 <p align="center">
   <img alt="cá nhân" src="https://img.shields.io/badge/lab-cá%20nhân-0b1f3a">
   <img alt="thời lượng" src="https://img.shields.io/badge/thời%20lượng-4%20giờ-ff8a3d">
   <img alt="ảnh" src="https://img.shields.io/badge/dữ%20liệu-36%20ảnh-12b3a8">
-  <img alt="python" src="https://img.shields.io/badge/python-3.10–3.13-3776ab">
+  <img alt="python" src="https://img.shields.io/badge/python-3.10–3.13-3776ab">
+
   <img alt="gpu" src="https://img.shields.io/badge/GPU-không%20bắt%20buộc-2fbf71">
   <a href="https://colab.research.google.com/github/VinUni-AI20k/K5-L23-Day08-AI-Assisted-Labeling/blob/main/notebooks/day08_colab.ipynb"><img alt="Mở trong Colab" src="https://colab.research.google.com/assets/colab-badge.svg"></a>
 </p>
