@@ -1,5 +1,7 @@
 # Thiết lập Day 08 trên máy Lê Quang Khải
 
+> Tài liệu này ghi trạng thái tại thời điểm chuẩn bị môi trường ban đầu. Tiến độ và kết quả cuối bài xem [NEXT_STEPS.md](NEXT_STEPS.md) và [REPORT.md](submission/REPORT.md).
+
 Ngày kiểm tra: 17/11/2026 (giờ Việt Nam). MSHV: `2A202603237`, lớp L2.
 
 ## Môi trường

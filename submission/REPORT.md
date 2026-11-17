@@ -42,14 +42,30 @@ Theo script, 23 đối tượng nằm quanh vùng bẫy đã được loại kh�
 
 ## 3. Thiên kiến tự động hóa và ảnh bẫy
 
-- Vòng 3: 11/12 = 91,7% (số từ `qc/review_stats_round3.json`), sau khi xem gợi ý; nhãn ở `labels/batch_reviewed_round3.json`. Các kiểm tra hình học không còn box dưới 20 px/vượt biên/gần trùng. Điểm còn khác tham chiếu là img_009: nhãn hiện motorbike, script kỳ vọng three_wheeler; học viên đã xác nhận vật thực tế là xe hai bánh và giữ motorbike (CAL-01).
+**Nguồn gốc bẫy:** `scripts/inject_traps.py` chủ động sửa pre-label để tạo 12 lỗi thuộc bốn nhóm: xóa box (missing), thêm box giả (extra), đổi lớp (wrong_class), làm box lệch/lỏng (loose). Bẫy dùng để đo khả năng phát hiện lỗi của người duyệt. Không quy nguồn gốc của các lỗi nhân tạo này cho ảnh mờ hoặc cho model học sai.
 
-- Số đo vòng 2 từ script: 8/12 = 66,7% sau khi đã xem gợi ý các ảnh/loại bẫy lọt. Nhãn giữ ở `labels/batch_reviewed_round2.json`; số đo ở `qc/review_stats_round2.*`. Chưa coi số này là kết quả review mù ban đầu. Hai khác biệt cần tự kiểm trên ảnh: img_008 đã đổi đúng person nhưng box khác kích thước tham chiếu (IoU 0,47); img_009 đang là motorbike trong khi bẫy kỳ vọng three_wheeler.
+| Vòng review | Bẫy bắt được | Điều kiện và nguồn |
+|---|---|---|
+| 1 — trước khi xem gợi ý | 5/12 = 41,7% | `qc/review_stats_round1.*`, `labels/batch_reviewed_round1.json`; giữ làm kết quả mù ban đầu. |
+| 2 — sau gợi ý | 8/12 = 66,7% | `qc/review_stats_round2.*`, `labels/batch_reviewed_round2.json`. |
+| 3 — tiếp tục sửa sau gợi ý | 11/12 = 91,7% | `qc/review_stats_round3.*`, `labels/batch_reviewed_round3.json`; không thay kết quả vòng 1. |
 
-- Cách review vòng 1 do học viên mô tả: "Làm cả hai tùy ảnh" — sử dụng cả cách ẩn nhãn/quét ảnh gốc trước và cách xem/sửa các box đang hiện, tùy ảnh. Chưa kết luận riêng mô tả này là nguyên nhân khiến bẫy lọt.
+Các lỗi còn lọt ở vòng đầu:
 
-- Bắt bẫy vòng 1: 5/12 = 41,7%; còn lọt 1 missing, 2 wrong_class, 2 loose, 2 extra (từ `qc/review_stats_round1.md`). Học viên chưa xác định được nguyên nhân cụ thể hoặc bước checklist đã bỏ qua. Không suy từ thống kê này rằng học viên chắc chắn tin máy quá mức; mô tả “làm cả hai tùy ảnh” cũng không cho biết từng ảnh đã được kiểm đủ các lượt hay chưa.
-- Accepted 422/522 = 80,8% phản ánh độ giống giữa box máy và box sau duyệt theo phép ghép của script, không phải tỷ lệ nhãn đúng được kiểm chứng độc lập. Tôi chỉ bắt được 5/12 bẫy nên lần duyệt đầu vẫn còn lọt lỗi ở cả bốn nhóm. Một box sai mà tôi giữ gần nguyên vẫn có thể thuộc accepted. Tôi chưa xác định được nguyên nhân cụ thể; không tự nhận đã bỏ một bước kiểm nào khi chưa nhớ rõ. Tôi sẽ dùng quy trình hai lượt và checklist cụ thể ở mục 4 cho lần review sau, thay vì coi accepted cao là đủ để chốt chất lượng.
+| Loại lỗi | Số bẫy lọt | Ảnh theo đầu ra script | Điểm tôi cần kiểm kỹ hơn |
+|---|---|---|---|
+| missing | 1/3 | img_034 | Quét ảnh gốc để tìm vật đủ điều kiện nhưng chưa có box. |
+| wrong_class | 2/3 | img_008, img_024 | Đọc tên lớp và đối chiếu cấu tạo vật, không chỉ nhìn vị trí box. |
+| loose | 2/3 | img_005, img_009 | Kiểm bốn cạnh/góc của box so với phần vật nhìn thấy. |
+| extra | 2/3 | img_018, img_025 | Đối chiếu từng box với vật thật; kiểm box thừa và box trùng cùng một vật. |
+
+**Tự đánh giá nguyên nhân bẫy lọt:** ở vòng đầu tôi có lúc ẩn nhãn để quét ảnh, có lúc xem và sửa các box đang hiện, tùy ảnh. Sau khi nhìn lại kết quả, tôi nhận thấy mình chưa đọc kỹ tên lớp và chưa quan sát đủ bốn góc/cạnh để kiểm độ ôm sát. Ở những ảnh có nhiều nhãn và box chồng nhau, việc theo dõi từng vật và nhận ra lỗi khó hơn. Theo tự đánh giá của tôi, hạn chế quan sát của người review là yếu tố chính khiến lỗi lọt. Đây là nhận xét hồi tưởng về cách tôi làm, chưa phải phép đo tách riêng đóng góp của từng nguyên nhân hoặc chứng minh nguyên nhân cho từng bẫy.
+
+**Khó khăn của model và khó khăn của người review:** vật thật che khuất nhau, nhỏ hoặc mờ có thể làm khó việc nhận diện và xác định đường biên. Đây là các khả năng giải thích lỗi dự đoán tự nhiên, chưa được đo riêng trong lab. Các box/nhãn vẽ chồng trên màn hình lại làm người review khó quan sát. Pipeline dự đoán trên ảnh gốc rồi mới vẽ box; không coi lớp box hiển thị chồng lên nhau là nguyên nhân trực tiếp khiến detector nhầm. Cũng chưa có bằng chứng để kết luận model đã học từ nhãn huấn luyện sai; lab này dùng model có sẵn để suy luận, không huấn luyện lại bằng các nhãn tôi sửa trong CVAT.
+
+**Liên hệ với accepted:** vòng 1 có 422/522 = 80,8% box accepted, nghĩa là box sau duyệt đủ giống box máy theo phép ghép của script. Con số này không phải tỷ lệ nhãn đúng được kiểm chứng độc lập: một box sai mà tôi giữ gần nguyên vẫn có thể được tính accepted. Việc vừa có accepted cao vừa chỉ bắt 5/12 bẫy cho thấy giữ nhiều gợi ý của máy không đồng nghĩa đã kiểm hết lỗi. Để giảm nguy cơ bị các box sẵn có dẫn hướng, tôi chọn quy trình hai lượt và checklist ở mục 4, chú trọng đọc tên lớp và kiểm bốn cạnh.
+
+**Khác biệt với tham chiếu máy:** vòng 3 còn một bẫy chưa được script chấm đạt ở img_009 vì tham chiếu kỳ vọng three_wheeler, trong khi tôi đã xác nhận vật là xe hai bánh và giữ motorbike (CAL-01). Các kiểm tra hình học của vòng 3 không còn box dưới 20 px, vượt biên hoặc gần trùng theo tiêu chí đã kiểm; điều đó không chứng minh toàn bộ nội dung nhãn đúng. Giữ nguyên số đo gốc 11/12 và ghi khác biệt, không đổi lớp chỉ để tăng điểm.
 
 ## 4. Máy có đáng dùng không?
 
@@ -97,7 +113,7 @@ Nếu kiểm bổ sung phát hiện ca chưa rõ quy tắc hoặc lỗi mới, c
 
 ## 8. Ghi chú cá nhân
 
-- **Dùng AI để làm bài:** Codex hỗ trợ đọc yêu cầu, tìm model sẵn có, cài môi trường, chạy script, kiểm tra kỹ thuật, chuẩn bị tiện ích đo giờ/nhập COCO và trình bày báo cáo từ phản hồi học viên. Codex giải thích ý nghĩa accepted, tỷ lệ bắt bẫy, quy tắc mask và cây quyết định QC khi học viên yêu cầu gợi ý; không coi giả thuyết do AI giải thích là nguyên nhân học viên đã xác nhận. Bằng chứng kỹ thuật: `LOCAL_SETUP.md`, `work/setup/` và `work/smoke/`. Học viên thực hiện gán gold, review, kiểm bằng mắt và nêu các quyết định calibration; kết luận cuối được ghi theo lựa chọn của học viên. Sau khi đọc bản giải thích và gợi ý bổ sung, học viên xác nhận “ý tôi cũng giống như bạn, hãy hoàn thiện báo cáo giúp tôi”; các quyết định r05–r08 và kế hoạch review hai lượt được đưa vào theo sự đồng ý đó. Không tạo thêm số đo hoặc tự xác định nguyên nhân bẫy lọt.
+- **Dùng AI để làm bài:** Codex hỗ trợ đọc yêu cầu, tìm model sẵn có, cài môi trường, chạy script, kiểm tra kỹ thuật, chuẩn bị tiện ích đo giờ/nhập COCO và trình bày báo cáo từ phản hồi học viên. Codex giải thích ý nghĩa accepted, tỷ lệ bắt bẫy, quy tắc mask và cây quyết định QC khi học viên yêu cầu gợi ý; không coi giả thuyết do AI giải thích là nguyên nhân học viên đã xác nhận. Bằng chứng kỹ thuật: `LOCAL_SETUP.md`, `work/setup/` và `work/smoke/`. Học viên thực hiện gán gold, review, kiểm bằng mắt và nêu các quyết định calibration; kết luận cuối được ghi theo lựa chọn của học viên. Sau khi đọc bản giải thích và gợi ý bổ sung, học viên xác nhận “ý tôi cũng giống như bạn, hãy hoàn thiện báo cáo giúp tôi”; các quyết định r05–r08 và kế hoạch review hai lượt được đưa vào theo sự đồng ý đó. Không tạo thêm số đo. Ở lần bổ sung cuối, học viên tự nêu việc chưa đọc kỹ tên lớp, chưa kiểm đủ bốn góc/cạnh và khó quan sát khi box chồng nhau; phần tự đánh giá nguyên nhân ở mục 3 được cập nhật theo phản hồi đó, không suy thành một kết quả đo nhân quả.
 - Gold: học viên xác nhận “tôi không xem nhãn AI của 4 ảnh gold trước khi gán tay”. Bản gold được export trước khi chạy model trên toàn bộ dữ liệu; đã giữ nguyên SHA256 qua các vòng review và QC. Phần chọn ngưỡng vẫn dùng chính gold nên có giới hạn in-sample như mục 1.
 - Lưu lịch sử review: `labels/batch_reviewed_round1.json` và `qc/review_stats_round1.*` giữ nguyên lần đầu, export trước khi xem thống kê bẫy; vòng sửa tiếp theo được ghi riêng vì đã biết ảnh/loại bẫy lọt.
 - Tiện ích kỹ thuật bổ sung: `scripts/prelabel_sam3_local.py` dùng SAM3 Ultralytics qua dịch vụ local cho box → mask; giữ nguyên `prelabel.py`. Gold đã export trước khi chạy model trên toàn bộ dữ liệu. `time_log.csv` ghi 15 phút gold do học viên báo, không phải đo bằng tiện ích Terminal.
